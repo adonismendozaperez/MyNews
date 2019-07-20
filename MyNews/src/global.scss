@@ -9,3 +9,14 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+//My Styles
+.text-primary{
+    color:var(--ion-color-primary) !important;
+}
+.new-source-name{
+
+}
+.new_description, .new_title{
+    color:white !important;
+}
