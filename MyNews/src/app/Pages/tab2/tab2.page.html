@@ -1,9 +1,18 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color="dark">
     <ion-title>
       Tab Two
     </ion-title>
   </ion-toolbar>
+  <ion-segment scrollable mode="md" color="primary">
+    <ion-segment-button mode="md" value="options"
+            *ngFor="let cat of Category;"
+            (click)="getCategory(cat)">
+      <ion-label>{{cat}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content color="dark">
+    <app-news [News]="News" ></app-news>
+</ion-content>
