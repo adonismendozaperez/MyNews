@@ -20,6 +20,7 @@ export class Tab2Page  implements OnInit{
 
   ngOnInit(){
     this.segment.value = this.Category[0];
+    this.getCategory(this.Category[0]);
   }
 
   getCategory(category) {
