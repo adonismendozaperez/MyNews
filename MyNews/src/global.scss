@@ -20,3 +20,10 @@
 .new_description, .new_title{
     color:white !important;
 }
+.action_dark, .action-sheet-group{
+    background-color: var(--ion-color-dark) !important;
+    color:white !important;
+}
+.action_dark ion-icon{
+    color:white !important;
+}
