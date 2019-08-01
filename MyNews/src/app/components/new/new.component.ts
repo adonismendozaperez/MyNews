@@ -3,6 +3,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Article } from 'src/app/Models/Interfaces';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { LocaldataService } from 'src/app/Services/localdata.service';
 
 @Component({
   selector: 'app-new',
@@ -15,7 +16,8 @@ export class NewComponent implements OnInit {
   constructor(
     private iab:InAppBrowser,
     private ActionSCtrl:ActionSheetController,
-    private socialSharing:SocialSharing
+    private socialSharing:SocialSharing,
+    private localData:LocaldataService
     ) { }
 
   ngOnInit() {}
@@ -44,6 +46,7 @@ export class NewComponent implements OnInit {
         cssClass:'action_dark',
         handler: () => {
           console.log('Favorite clicked');
+          this.localData.SaveNews(this.new);
         }
       }, {
         text: 'Cancel',
