@@ -1,13 +1,20 @@
 <ion-card>
-  <ion-card-header>
-    <ion-card-title class="new_title">{{ new.title }}</ion-card-title>
+  <ion-card-header >
     <ion-card-subtitle>
       <span class="text-primary">{{i + 1}} | </span>
       <span class="new-source-name">{{ new.source.name }}</span> 
+      <div class="new_more">
+          <ion-button fill="clear" (click)="GetOption()">
+            <ion-icon slot="icon-only" name="more"></ion-icon>
+          </ion-button>
+        </div>
     </ion-card-subtitle>
+    <ion-card-title class="new_title" (click)="ViewNew()">{{ new.title }}</ion-card-title>
   </ion-card-header>
     <ion-img *ngIf="new.urlToImage"
-              [src]="new.urlToImage"></ion-img>
+              [src]="new.urlToImage"
+              class="animated fadeIn fast"
+              (click)="ViewNew()"></ion-img>
   <ion-content>
     <p class="new_description">{{ new.description}}</p>
   </ion-content>

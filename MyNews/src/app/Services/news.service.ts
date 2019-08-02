@@ -13,6 +13,12 @@ export class NewsService {
   getTopHeadLines(){
     return this.http
       .get<ResponseTopHeadLine>(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${environment.apiKey}`);
+  } 
+
+  getTopHeadLinesByCategory(Category){
+    return this.http
+      .get<ResponseTopHeadLine>
+        (`https://newsapi.org/v2/top-headlines?country=us&category=${Category}&apiKey=${environment.apiKey}`);
   }
 
 }

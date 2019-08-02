@@ -8,7 +8,7 @@ import { Article } from 'src/app/Models/Interfaces';
 })
 export class NewsComponent implements OnInit {
   @Input() News : Article[] = [];
-
+  @Input() Favorite:boolean = false;
   constructor() { }
 
   ngOnInit() {}

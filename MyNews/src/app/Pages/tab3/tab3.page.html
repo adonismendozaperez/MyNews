@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab Three
+      Favorites
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content color="dark">
+  <div *ngIf="dataLocal.news.length === 0" class="not_resourse">
+      <ion-img src="../assets/newspaper.svg"></ion-img>
+  </div>
+  <app-news *ngIf="dataLocal.news.length > 0"
+   [News]="dataLocal.news"
+   [Favorite]="true" ></app-news>
+</ion-content>
