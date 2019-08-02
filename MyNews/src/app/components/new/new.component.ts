@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Article } from 'src/app/Models/Interfaces';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { LocaldataService } from 'src/app/Services/localdata.service';
 
@@ -19,7 +19,8 @@ export class NewComponent implements OnInit {
     private iab:InAppBrowser,
     private ActionSCtrl:ActionSheetController,
     private socialSharing:SocialSharing,
-    private localData:LocaldataService
+    private localData:LocaldataService,
+    private toastCtrl:ToastController
     ) { }
 
   ngOnInit() {}
@@ -29,6 +30,7 @@ export class NewComponent implements OnInit {
   }
 
   async GetOption(){
+    
     let FavoriteOrDelete;
     if(this.Favorite){
       //BorrarFavorito
@@ -36,9 +38,15 @@ export class NewComponent implements OnInit {
         text: 'Delete Favorite',
         icon: 'trash',
         cssClass:'action_dark',
-        handler: () => {
-          console.log('Favorite clicked');
+        handler: async () => {
           this.localData.DeleteNews(this.new);
+          const toast = await this.toastCtrl.create({
+            message: 'Favorite has Delete.',
+            position: 'top',
+            color: 'primary',
+            duration: 2000
+          });
+          toast.present();
         }
       }
     }
@@ -47,9 +55,15 @@ export class NewComponent implements OnInit {
         text: 'Favorite',
         icon: 'heart',
         cssClass:'action_dark',
-        handler: () => {
-          console.log('Favorite clicked');
+        handler: async () => {
           this.localData.SaveNews(this.new);
+          const toast = await this.toastCtrl.create({
+            message: 'save in Favorite.',
+            position: 'top',
+            color: 'primary',
+            duration: 2000
+          });
+          toast.present();
         }
       }
     }
@@ -74,7 +88,6 @@ export class NewComponent implements OnInit {
         role: 'cancel',
         cssClass:'action_dark',
         handler: () => {
-          console.log('Cancel clicked');
         }
       }]
     });

@@ -13,6 +13,7 @@
   </ion-card-header>
     <ion-img *ngIf="new.urlToImage"
               [src]="new.urlToImage"
+              class="animated fadeIn fast"
               (click)="ViewNew()"></ion-img>
   <ion-content>
     <p class="new_description">{{ new.description}}</p>
