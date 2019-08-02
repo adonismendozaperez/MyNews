@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content color="dark">
-    <app-news [News]="dataLocal.news" ></app-news>
+  <div *ngIf="dataLocal.news.length === 0" class="not_resourse">
+      <ion-img src="../assets/newspaper.svg"></ion-img>
+  </div>
+  <app-news *ngIf="dataLocal.news.length > 0"
+   [News]="dataLocal.news"
+   [Favorite]="true" ></app-news>
 </ion-content>

@@ -13,6 +13,8 @@ import { LocaldataService } from 'src/app/Services/localdata.service';
 export class NewComponent implements OnInit {
   @Input() new : Article;
   @Input() i;
+  @Input() Favorite:boolean = false;
+  
   constructor(
     private iab:InAppBrowser,
     private ActionSCtrl:ActionSheetController,
@@ -27,6 +29,30 @@ export class NewComponent implements OnInit {
   }
 
   async GetOption(){
+    let FavoriteOrDelete;
+    if(this.Favorite){
+      //BorrarFavorito
+      FavoriteOrDelete = {
+        text: 'Delete Favorite',
+        icon: 'trash',
+        cssClass:'action_dark',
+        handler: () => {
+          console.log('Favorite clicked');
+          this.localData.DeleteNews(this.new);
+        }
+      }
+    }
+    else{
+      FavoriteOrDelete = {
+        text: 'Favorite',
+        icon: 'heart',
+        cssClass:'action_dark',
+        handler: () => {
+          console.log('Favorite clicked');
+          this.localData.SaveNews(this.new);
+        }
+      }
+    }
     const actionSheet = await this.ActionSCtrl.create({
       buttons: [ {
         text: 'Share',
@@ -40,15 +66,9 @@ export class NewComponent implements OnInit {
             this.new.url
           );
         }
-      },{
-        text: 'Favorite',
-        icon: 'heart',
-        cssClass:'action_dark',
-        handler: () => {
-          console.log('Favorite clicked');
-          this.localData.SaveNews(this.new);
-        }
-      }, {
+      },
+        FavoriteOrDelete
+      , {
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',

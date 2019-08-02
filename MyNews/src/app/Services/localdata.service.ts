@@ -28,4 +28,9 @@ export class LocaldataService {
       this.news = [];
     }
   }
+
+  DeleteNews(n: Article){
+    this.news = this.news.filter(nw => nw.title !== n.title);
+    this.storage.set('Favorites',this.news)
+  }
 }
