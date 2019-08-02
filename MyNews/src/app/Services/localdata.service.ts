@@ -7,7 +7,9 @@ import { Article } from '../Models/Interfaces';
 })
 export class LocaldataService {
   news:Article[] = []
-  constructor(private storage:Storage) { }
+  constructor(private storage:Storage) { 
+    this.Favorites();
+  }
 
   SaveNews(n: Article){
     const exits = this.news.find(nw => nw.title === n.title);
@@ -17,7 +19,13 @@ export class LocaldataService {
     }
   }
 
-  Favorites(){
-
+  async Favorites(){
+    const fav = await  this.storage.get('Favorites');
+    if(fav){
+      this.news = fav;
+    }
+    else{
+      this.news = [];
+    }
   }
 }
